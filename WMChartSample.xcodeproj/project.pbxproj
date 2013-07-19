@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		023D07B5179909CD00E462C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023D07B4179909CD00E462C2 /* UIKit.framework */; };
+		023D07B7179909CD00E462C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023D07B6179909CD00E462C2 /* Foundation.framework */; };
+		023D07B9179909CD00E462C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023D07B8179909CD00E462C2 /* CoreGraphics.framework */; };
+		023D07BF179909CD00E462C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 023D07BD179909CD00E462C2 /* InfoPlist.strings */; };
+		023D07C1179909CD00E462C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07C0179909CD00E462C2 /* main.m */; };
+		023D07C5179909CD00E462C2 /* WMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07C4179909CD00E462C2 /* WMAppDelegate.m */; };
+		023D07C7179909CD00E462C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07C6179909CD00E462C2 /* Default.png */; };
+		023D07C9179909CD00E462C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07C8179909CD00E462C2 /* Default@2x.png */; };
+		023D07CB179909CD00E462C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07CA179909CD00E462C2 /* Default-568h@2x.png */; };
+		023D07CE179909CD00E462C2 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 023D07CC179909CD00E462C2 /* MainStoryboard.storyboard */; };
+		023D07D1179909CD00E462C2 /* WMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07D0179909CD00E462C2 /* WMViewController.m */; };
+		023D07E817990A3800E462C2 /* EasyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07DA17990A3800E462C2 /* EasyTableView.m */; };
+		023D07E917990A3800E462C2 /* WMChartDataObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07DD17990A3800E462C2 /* WMChartDataObject.m */; };
+		023D07EB17990A3800E462C2 /* WMChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E117990A3800E462C2 /* WMChartView.m */; };
+		023D07EC17990A3800E462C2 /* NSDate+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E317990A3800E462C2 /* NSDate+Graph.m */; };
+		023D07ED17990A3800E462C2 /* UIColor+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E517990A3800E462C2 /* UIColor+Graph.m */; };
+		023D07EE17990A3800E462C2 /* UIFont+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E717990A3800E462C2 /* UIFont+Graph.m */; };
+		023D07F617990EA500E462C2 /* grap_point.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F017990EA500E462C2 /* grap_point.png */; };
+		023D07F717990EA500E462C2 /* grap_point@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F117990EA500E462C2 /* grap_point@2x.png */; };
+		023D07F817990EA500E462C2 /* graph_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F217990EA500E462C2 /* graph_background.png */; };
+		023D07F917990EA500E462C2 /* graph_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F317990EA500E462C2 /* graph_background@2x.png */; };
+		023D07FA17990EA500E462C2 /* graph_today_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F417990EA500E462C2 /* graph_today_highlight.png */; };
+		023D07FB17990EA500E462C2 /* graph_today_highlight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F517990EA500E462C2 /* graph_today_highlight@2x.png */; };
+		023D07FD17990EFF00E462C2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 023D07FC17990EFF00E462C2 /* QuartzCore.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		023D07B1179909CD00E462C2 /* WMChartSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WMChartSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		023D07B4179909CD00E462C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		023D07B6179909CD00E462C2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		023D07B8179909CD00E462C2 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		023D07BC179909CD00E462C2 /* WMChartSample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WMChartSample-Info.plist"; sourceTree = "<group>"; };
+		023D07BE179909CD00E462C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		023D07C0179909CD00E462C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		023D07C2179909CD00E462C2 /* WMChartSample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WMChartSample-Prefix.pch"; sourceTree = "<group>"; };
+		023D07C3179909CD00E462C2 /* WMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMAppDelegate.h; sourceTree = "<group>"; };
+		023D07C4179909CD00E462C2 /* WMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMAppDelegate.m; sourceTree = "<group>"; };
+		023D07C6179909CD00E462C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		023D07C8179909CD00E462C2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		023D07CA179909CD00E462C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		023D07CD179909CD00E462C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		023D07CF179909CD00E462C2 /* WMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WMViewController.h; sourceTree = "<group>"; };
+		023D07D0179909CD00E462C2 /* WMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMViewController.m; sourceTree = "<group>"; };
+		023D07D917990A3800E462C2 /* EasyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EasyTableView.h; sourceTree = "<group>"; };
+		023D07DA17990A3800E462C2 /* EasyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EasyTableView.m; sourceTree = "<group>"; };
+		023D07DB17990A3800E462C2 /* GraphConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphConstants.h; sourceTree = "<group>"; };
+		023D07DC17990A3800E462C2 /* WMChartDataObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMChartDataObject.h; sourceTree = "<group>"; };
+		023D07DD17990A3800E462C2 /* WMChartDataObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMChartDataObject.m; sourceTree = "<group>"; };
+		023D07E017990A3800E462C2 /* WMChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMChartView.h; sourceTree = "<group>"; };
+		023D07E117990A3800E462C2 /* WMChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMChartView.m; sourceTree = "<group>"; };
+		023D07E217990A3800E462C2 /* NSDate+Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Graph.h"; sourceTree = "<group>"; };
+		023D07E317990A3800E462C2 /* NSDate+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Graph.m"; sourceTree = "<group>"; };
+		023D07E417990A3800E462C2 /* UIColor+Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Graph.h"; sourceTree = "<group>"; };
+		023D07E517990A3800E462C2 /* UIColor+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Graph.m"; sourceTree = "<group>"; };
+		023D07E617990A3800E462C2 /* UIFont+Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Graph.h"; sourceTree = "<group>"; };
+		023D07E717990A3800E462C2 /* UIFont+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Graph.m"; sourceTree = "<group>"; };
+		023D07F017990EA500E462C2 /* grap_point.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grap_point.png; sourceTree = "<group>"; };
+		023D07F117990EA500E462C2 /* grap_point@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grap_point@2x.png"; sourceTree = "<group>"; };
+		023D07F217990EA500E462C2 /* graph_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_background.png; sourceTree = "<group>"; };
+		023D07F317990EA500E462C2 /* graph_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graph_background@2x.png"; sourceTree = "<group>"; };
+		023D07F417990EA500E462C2 /* graph_today_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_today_highlight.png; sourceTree = "<group>"; };
+		023D07F517990EA500E462C2 /* graph_today_highlight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graph_today_highlight@2x.png"; sourceTree = "<group>"; };
+		023D07FC17990EFF00E462C2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		023D07AE179909CD00E462C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				023D07FD17990EFF00E462C2 /* QuartzCore.framework in Frameworks */,
+				023D07B5179909CD00E462C2 /* UIKit.framework in Frameworks */,
+				023D07B7179909CD00E462C2 /* Foundation.framework in Frameworks */,
+				023D07B9179909CD00E462C2 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		023D07A8179909CD00E462C2 = {
+			isa = PBXGroup;
+			children = (
+				023D07BA179909CD00E462C2 /* WMChartSample */,
+				023D07B3179909CD00E462C2 /* Frameworks */,
+				023D07B2179909CD00E462C2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		023D07B2179909CD00E462C2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				023D07B1179909CD00E462C2 /* WMChartSample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		023D07B3179909CD00E462C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				023D07FC17990EFF00E462C2 /* QuartzCore.framework */,
+				023D07B4179909CD00E462C2 /* UIKit.framework */,
+				023D07B6179909CD00E462C2 /* Foundation.framework */,
+				023D07B8179909CD00E462C2 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		023D07BA179909CD00E462C2 /* WMChartSample */ = {
+			isa = PBXGroup;
+			children = (
+				023D07D717990A3800E462C2 /* WMChart */,
+				023D07C3179909CD00E462C2 /* WMAppDelegate.h */,
+				023D07C4179909CD00E462C2 /* WMAppDelegate.m */,
+				023D07CC179909CD00E462C2 /* MainStoryboard.storyboard */,
+				023D07CF179909CD00E462C2 /* WMViewController.h */,
+				023D07D0179909CD00E462C2 /* WMViewController.m */,
+				023D07BB179909CD00E462C2 /* Supporting Files */,
+			);
+			path = WMChartSample;
+			sourceTree = "<group>";
+		};
+		023D07BB179909CD00E462C2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				023D07BC179909CD00E462C2 /* WMChartSample-Info.plist */,
+				023D07BD179909CD00E462C2 /* InfoPlist.strings */,
+				023D07C0179909CD00E462C2 /* main.m */,
+				023D07C2179909CD00E462C2 /* WMChartSample-Prefix.pch */,
+				023D07C6179909CD00E462C2 /* Default.png */,
+				023D07C8179909CD00E462C2 /* Default@2x.png */,
+				023D07CA179909CD00E462C2 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		023D07D717990A3800E462C2 /* WMChart */ = {
+			isa = PBXGroup;
+			children = (
+				023D07EF17990EA500E462C2 /* ChartResource */,
+				023D07D817990A3800E462C2 /* EasyTable */,
+				023D07DB17990A3800E462C2 /* GraphConstants.h */,
+				023D07DC17990A3800E462C2 /* WMChartDataObject.h */,
+				023D07DD17990A3800E462C2 /* WMChartDataObject.m */,
+				023D07E017990A3800E462C2 /* WMChartView.h */,
+				023D07E117990A3800E462C2 /* WMChartView.m */,
+				023D07E217990A3800E462C2 /* NSDate+Graph.h */,
+				023D07E317990A3800E462C2 /* NSDate+Graph.m */,
+				023D07E417990A3800E462C2 /* UIColor+Graph.h */,
+				023D07E517990A3800E462C2 /* UIColor+Graph.m */,
+				023D07E617990A3800E462C2 /* UIFont+Graph.h */,
+				023D07E717990A3800E462C2 /* UIFont+Graph.m */,
+			);
+			path = WMChart;
+			sourceTree = "<group>";
+		};
+		023D07D817990A3800E462C2 /* EasyTable */ = {
+			isa = PBXGroup;
+			children = (
+				023D07D917990A3800E462C2 /* EasyTableView.h */,
+				023D07DA17990A3800E462C2 /* EasyTableView.m */,
+			);
+			path = EasyTable;
+			sourceTree = "<group>";
+		};
+		023D07EF17990EA500E462C2 /* ChartResource */ = {
+			isa = PBXGroup;
+			children = (
+				023D07F017990EA500E462C2 /* grap_point.png */,
+				023D07F117990EA500E462C2 /* grap_point@2x.png */,
+				023D07F217990EA500E462C2 /* graph_background.png */,
+				023D07F317990EA500E462C2 /* graph_background@2x.png */,
+				023D07F417990EA500E462C2 /* graph_today_highlight.png */,
+				023D07F517990EA500E462C2 /* graph_today_highlight@2x.png */,
+			);
+			path = ChartResource;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		023D07B0179909CD00E462C2 /* WMChartSample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 023D07D4179909CD00E462C2 /* Build configuration list for PBXNativeTarget "WMChartSample" */;
+			buildPhases = (
+				023D07AD179909CD00E462C2 /* Sources */,
+				023D07AE179909CD00E462C2 /* Frameworks */,
+				023D07AF179909CD00E462C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WMChartSample;
+			productName = WMChartSample;
+			productReference = 023D07B1179909CD00E462C2 /* WMChartSample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		023D07A9179909CD00E462C2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = WM;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = iwishow;
+			};
+			buildConfigurationList = 023D07AC179909CD00E462C2 /* Build configuration list for PBXProject "WMChartSample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 023D07A8179909CD00E462C2;
+			productRefGroup = 023D07B2179909CD00E462C2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				023D07B0179909CD00E462C2 /* WMChartSample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		023D07AF179909CD00E462C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				023D07BF179909CD00E462C2 /* InfoPlist.strings in Resources */,
+				023D07C7179909CD00E462C2 /* Default.png in Resources */,
+				023D07C9179909CD00E462C2 /* Default@2x.png in Resources */,
+				023D07CB179909CD00E462C2 /* Default-568h@2x.png in Resources */,
+				023D07CE179909CD00E462C2 /* MainStoryboard.storyboard in Resources */,
+				023D07F617990EA500E462C2 /* grap_point.png in Resources */,
+				023D07F717990EA500E462C2 /* grap_point@2x.png in Resources */,
+				023D07F817990EA500E462C2 /* graph_background.png in Resources */,
+				023D07F917990EA500E462C2 /* graph_background@2x.png in Resources */,
+				023D07FA17990EA500E462C2 /* graph_today_highlight.png in Resources */,
+				023D07FB17990EA500E462C2 /* graph_today_highlight@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		023D07AD179909CD00E462C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				023D07C1179909CD00E462C2 /* main.m in Sources */,
+				023D07C5179909CD00E462C2 /* WMAppDelegate.m in Sources */,
+				023D07D1179909CD00E462C2 /* WMViewController.m in Sources */,
+				023D07E817990A3800E462C2 /* EasyTableView.m in Sources */,
+				023D07E917990A3800E462C2 /* WMChartDataObject.m in Sources */,
+				023D07EB17990A3800E462C2 /* WMChartView.m in Sources */,
+				023D07EC17990A3800E462C2 /* NSDate+Graph.m in Sources */,
+				023D07ED17990A3800E462C2 /* UIColor+Graph.m in Sources */,
+				023D07EE17990A3800E462C2 /* UIFont+Graph.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		023D07BD179909CD00E462C2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				023D07BE179909CD00E462C2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		023D07CC179909CD00E462C2 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				023D07CD179909CD00E462C2 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		023D07D2179909CD00E462C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		023D07D3179909CD00E462C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		023D07D5179909CD00E462C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WMChartSample/WMChartSample-Prefix.pch";
+				INFOPLIST_FILE = "WMChartSample/WMChartSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		023D07D6179909CD00E462C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "WMChartSample/WMChartSample-Prefix.pch";
+				INFOPLIST_FILE = "WMChartSample/WMChartSample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		023D07AC179909CD00E462C2 /* Build configuration list for PBXProject "WMChartSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				023D07D2179909CD00E462C2 /* Debug */,
+				023D07D3179909CD00E462C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		023D07D4179909CD00E462C2 /* Build configuration list for PBXNativeTarget "WMChartSample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				023D07D5179909CD00E462C2 /* Debug */,
+				023D07D6179909CD00E462C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 023D07A9179909CD00E462C2 /* Project object */;
+}
