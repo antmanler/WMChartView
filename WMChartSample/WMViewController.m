@@ -22,6 +22,16 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // fill uiview with custom image
+    UIImage *backgroundImg = nil;
+    if ([UIScreen mainScreen].bounds.size.height == 568.f) {
+        backgroundImg = [UIImage imageNamed:@"view_background-568h@2x.png"];
+    } else {
+        backgroundImg = [UIImage imageNamed:@"view_background.png"];
+    }
+    self.view.backgroundColor = [UIColor colorWithPatternImage:backgroundImg];
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         NSDate *startDate = [NSDate dateWithTimeIntervalSinceNow:-900*NUMBER_OF_SECONDS_IN_DAY];
@@ -53,51 +63,26 @@
 
 - (void)graphScrollableView:(WMChartView *)view willUpdateFrame:(CGRect)newFrame{
     
-    //    self.graphScrollView.contentSize = newFrame.size;
 }
 
 - (void)graphScrollableView:(WMChartView *)view didChangeZoomRate:(NSInteger)newZoomRate{
     
-    //    self.zoomRateLabel.text = [NSString stringWithFormat:@"%d days", newZoomRate];
 }
 
 - (void)graphScrollableViewDidStartUpdateZoomRate:(WMChartView *)view{
-    //
-    //    [UIView animateWithDuration:.5f animations:^{
-    //
-    //        self.zoomRateLabel.alpha = 1.f;
-    //    }];
+
 }
 
 - (void)graphScrollableViewDidEndUpdateZoomRate:(WMChartView *)view{
     
-    //    [UIView animateWithDuration:.5f animations:^{
-    //
-    //        self.zoomRateLabel.alpha = 0.f;
-    //    }];
 }
 
 - (void)graphScrollableViewDidEndRedraw:(WMChartView *)view{
     
-    //    if(!self.isGraphViewInialized){
-    //
-    //        [self scrollToRecentObjects];
-    //
-    //        self.isGraphViewInialized = YES;
-    //    }
-    //
-    //    if([self.delegate respondsToSelector:@selector(graphViewDidUpdate:)]){
-    //
-    //        [self.delegate graphViewDidUpdate: self];
-    //    }
 }
 
 - (void)graphScrollableViewDidStartRedraw:(WMChartView *)view{
     
-    //    if([self.delegate respondsToSelector:@selector(graphViewWillUpdate:)]){
-    //        
-    //        [self.delegate graphViewWillUpdate: self];
-    //    }
 }
 
 @end

@@ -18,51 +18,33 @@
 #define GRAPH_HEIGHT          (300)
 #define GRAPH_FRAME_WIDTH     (320)
 #define GRAPH_DATA_HEIGHT     (245)
+#define VISIBLE_CIRCLE_WITHD  (32)
 #define GRAPH_POINT_SIZE      CGSizeMake(70, 70)
 #define GRAPH_VISIBLE_FRAME   CGRectMake(0, 75, 320, GRAPH_HEIGHT)
-#define VISIBLE_CIRCLE_WITHD  (32)
 
 #define INTERVAL_BETWEEN_DRAWNING_DATE_POINT (40)
 
 #define TOP_Y_OFFSET_FOR_GRAPH_POINTS (35)
 #define BOTTOM_Y_OFFSET_FOR_GRAPH_POINTS (GRAPH_HEIGHT - GRAPH_DATA_HEIGHT + 18)
 
-#define MONTH_LABEL_YOFFSET (35)
-#define MONTH_LABEL_SIZE CGSizeMake(80, 30)
+#define MONTH_LABEL_YOFFSET (15)
+#define MONTH_LABEL_SIZE CGSizeMake(90, 40)
 
+#define DEF_VIEW_FRAME_HEIGHT  (400)
 #define DEF_VIEW_FRAME CGRectMake(0, 0, 320, 400)
-
-#pragma mark - GraphPoint
-@class GraphPoint;
-
-@protocol GraphPointDelegate <NSObject>
-
-@optional
-- (void)graphPointClicked:(GraphPoint *)point withObject:(WMChartDataObject *)object;
-
-@end
-
-@interface GraphPoint : UIView
-
-@property (nonatomic, weak) id<GraphPointDelegate> delegate;
-@property (nonatomic, strong) WMChartDataObject *associatedObject;
-@property (nonatomic, unsafe_unretained) BOOL isTouchesEnabled;
-
-- (id)initWithFrame:(CGRect)frame associatedObject:(WMChartDataObject *)theAssociatedObject delegate:(id<GraphPointDelegate>)theDelegate;
-
-@end
 
 #pragma mark - GraphDataView
 @interface GraphDataView : UIView {
-    UIColor                     *lineColor;
-    UIColor                     *gradientColor;
-    UIColor                     *todayHighlightColor;
-    UILabel                     *dayLabel;
-    UILabel                     *monthLabel;
-    BOOL                        isToday;
+    UIColor             *lineColor;
+    UIColor             *gradientColor;
+    UIColor             *todayHighlightColor;
+    UILabel             *valueLabel;
+    UILabel             *dayLabel;
+    UILabel             *monthLabel;
+    Float32             barY;
+    BOOL                isToday;
     
-    NSMutableArray              *dataPos;
-    GraphPoint                  *graphPoint;
+    NSMutableArray      *dataPos;
     __weak WMChartView  *controller;
 }
 
@@ -74,103 +56,30 @@
 
 
 @interface WMChartView() <UIGestureRecognizerDelegate, EasyTableViewDelegate> {
-    NSTimeInterval startUNIXDate;
-    NSTimeInterval endUNIXDate;
-    NSDate         *startDate;
-    NSDate         *endDate;
-    NSInteger      numberOfDays;
+    NSTimeInterval  startUNIXDate;
+    NSTimeInterval  endUNIXDate;
+    NSDate          *startDate;
+    NSDate          *endDate;
+    NSInteger       numberOfDays;
     
-    NSInteger newZoomRate;
-    Float32   maximumZoomRate;
-    Float32   minimumZoomRate;
+    NSInteger       newZoomRate;
+    Float32         maximumZoomRate;
+    Float32         minimumZoomRate;
     
-    EasyTableView    *graphTableView;
-    UILabel          *leftMouthLabel;
-    UILabel          *rightMouthLabel;
+    EasyTableView   *graphTableView;
+    UILabel         *leftMouthLabel;
+    UILabel         *rightMouthLabel;
 }
 
-@property (nonatomic, strong) NSArray *objectsArray;
-@property (nonatomic, unsafe_unretained) float dayIntervalWidth;
-@property (nonatomic, unsafe_unretained) float minimumYValue;
-@property (nonatomic, unsafe_unretained) float maximumYValue;
-@property (nonatomic, weak) id<WMChartViewDelegate> delegate;
+@property (nonatomic, strong)            NSArray    *objectsArray;
+@property (nonatomic, unsafe_unretained) Float32    dayIntervalWidth;
+@property (nonatomic, unsafe_unretained) Float32    minimumYValue;
+@property (nonatomic, unsafe_unretained) Float32    maximumYValue;
+
+@property (nonatomic, weak)              id<WMChartViewDelegate>    delegate;
 
 -(Float32) pointYValueForDataObject:(WMChartDataObject *)data;
 -(Float32) pointYValueForDataValue:(Float32)data;
-
-@end
-
-@interface GraphPoint() {
-    CALayer *nodeLayer;
-}
-
-@property (nonatomic, strong) UIColor *fillColor;
-@property (nonatomic, strong) UILabel *valueLabel;
-
-@end
-
-#pragma mark - implementation GraphPoint
-@implementation GraphPoint
-
-- (id)initWithFrame:(CGRect)frame associatedObject:(WMChartDataObject *)theAssociatedObject delegate:(id<GraphPointDelegate>)theDelegate
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
-        self.backgroundColor = [UIColor clearColor];
-        self.userInteractionEnabled = YES;
-        
-        // add  value label
-        UILabel *lbl = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 70, 19)];
-        [lbl setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLightItalic" size:12]];
-        [lbl setTextColor:[UIColor wmGraphTextColor]];
-        [lbl setAdjustsFontSizeToFitWidth:YES];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-        [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
-        [lbl setMinimumFontSize:8];
-        [lbl setTextAlignment:UITextAlignmentCenter];
-#else
-        lbl.lineBreakMode = NSLineBreakByTruncatingTail;
-        lbl.minimumScaleFactor = 8.f/12.f;
-        lbl.textAlignment = NSTextAlignmentCenter;
-#endif
-        [lbl setShadowOffset:CGSizeMake(0, 0.1f)];
-        [lbl setBackgroundColor:[UIColor clearColor]];
-        [lbl setCenter:CGPointMake((frame.size.width)/2.f,  (frame.size.height - VISIBLE_CIRCLE_WITHD - 15.f)/2.f)];
-        
-        [self addSubview:lbl];
-        
-        nodeLayer = [CALayer layer];
-        nodeLayer.contentsScale = [UIScreen mainScreen].scale;
-        nodeLayer.contents = (id)[UIImage imageNamed:@"grap_point.png"].CGImage;
-        nodeLayer.frame = CGRectMake((self.frame.size.width - VISIBLE_CIRCLE_WITHD)/2, (self.frame.size.height - VISIBLE_CIRCLE_WITHD)/2, VISIBLE_CIRCLE_WITHD, VISIBLE_CIRCLE_WITHD);
-        [nodeLayer removeAnimationForKey:@"frame"];
-        [self.layer addSublayer:nodeLayer];
-        
-        self.fillColor = [UIColor clearColor];
-        self.valueLabel = lbl;
-        self.delegate = theDelegate;
-        self.associatedObject = theAssociatedObject;
-    }
-    return self;
-}
-
-- (void)setAssociatedObject:(WMChartDataObject *)associatedObject {
-    _associatedObject = associatedObject;
-    if (_associatedObject) {
-        [self.valueLabel setText: [NSString stringWithFormat:@"%.1f%%", [self.associatedObject.value floatValue] ] ];
-        [self setNeedsDisplay];
-    }
-}
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
-    
-    if([self.delegate respondsToSelector:@selector(graphPointClicked:withObject:)]){
-        
-        [self.delegate graphPointClicked:self withObject:self.associatedObject];
-    }
-}
-
 
 @end
 
@@ -192,51 +101,23 @@
         gradientColor = [UIColor colorWithPatternImage:gradientImg];
         todayHighlightColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"graph_today_highlight.png"]];
         
-        // add graph point to sub view
-        if (frame.size.width >= GRAPH_POINT_SIZE.width/2) {
-            if([controller.delegate conformsToProtocol:@protocol(GraphPointDelegate)]) {
-                
-                graphPoint = [[GraphPoint alloc] initWithFrame:CGRectMake(-12, 0, GRAPH_POINT_SIZE.width, GRAPH_POINT_SIZE.height)
-                                              associatedObject:data
-                                                      delegate:(id<GraphPointDelegate>)controller.delegate];
-            } else {
-                graphPoint = [[GraphPoint alloc] initWithFrame:CGRectMake(-12, 0, GRAPH_POINT_SIZE.width, GRAPH_POINT_SIZE.height)
-                                              associatedObject:data
-                                                      delegate: nil];
-            }
-            
-            [self addSubview: graphPoint];
-        }
-        
         // data label
-        dayLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, GRAPH_DATA_HEIGHT + 10, frame.size.width, 12)];
+        dayLabel = [self createLegendLabelWithFrame:CGRectMake(0, GRAPH_DATA_HEIGHT + 6, frame.size.width, 14)
+                                            andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:15.0f]];
         [dayLabel setTextColor:[UIColor wmGraphTextColor]];
-        [dayLabel setBackgroundColor:[UIColor clearColor]];
-        dayLabel.adjustsFontSizeToFitWidth = YES;
-        [dayLabel setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:16]];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-        [dayLabel.textAlignment = UITextAlignmentCenter];
-        dayLabel.minimumFontSize = 8;
-#else 
-        dayLabel.textAlignment = NSTextAlignmentCenter;
-        dayLabel.minimumScaleFactor = 8.f/12.f;
-#endif
         [self addSubview:dayLabel];
         
         // month label
-        monthLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, dayLabel.frame.origin.y + dayLabel.frame.size.height + 5, frame.size.width, 16)];
-        [monthLabel setTextColor:[UIColor wmGraphTextColor]];
-        [monthLabel setBackgroundColor:[UIColor clearColor]];
-        monthLabel.adjustsFontSizeToFitWidth = YES;
-        [monthLabel setFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:14]];
-#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
-        [monthLabel.textAlignment = UITextAlignmentCenter];
-        monthLabel.minimumFontSize = 8;
-#else
-        monthLabel.textAlignment = NSTextAlignmentCenter;
-        monthLabel.minimumScaleFactor = 8.f/12.f;
-#endif
+        monthLabel = [self createLegendLabelWithFrame:CGRectMake(0, dayLabel.frame.origin.y + dayLabel.frame.size.height, frame.size.width, 16)
+                                              andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:14.0f]];
         [self addSubview:monthLabel];
+        
+        //value label
+        valueLabel = [self createLegendLabelWithFrame:CGRectMake(0, 0, frame.size.width, 19)
+                                              andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLightItalic" size:12.0f]];
+        [valueLabel setCenter:CGPointMake((valueLabel.frame.size.width)/2.f,  (valueLabel.frame.size.height)/2.f)];
+        [self addSubview:valueLabel];
+        
         
         [self updateGraphDate:data];
         
@@ -244,11 +125,31 @@
     return self;
 }
 
+- (UILabel*) createLegendLabelWithFrame:(CGRect) frame andFont:(UIFont*)font{
+    
+    UILabel *lbl = [[UILabel alloc]initWithFrame:frame];
+    [lbl setFont:font];
+    [lbl setTextColor:[UIColor wmGraphTextColor]];
+    [lbl setAdjustsFontSizeToFitWidth:YES];
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
+    [lbl setLineBreakMode:UILineBreakModeMiddleTruncation];
+    [lbl setMinimumFontSize:8];
+    [lbl setTextAlignment:UITextAlignmentCenter];
+#else
+    lbl.lineBreakMode = NSLineBreakByTruncatingTail;
+    lbl.minimumScaleFactor = 8.f/font.pointSize;
+    lbl.textAlignment = NSTextAlignmentCenter;
+#endif
+    [lbl setShadowOffset:CGSizeMake(0, 0.1f)];
+    [lbl setBackgroundColor:[UIColor clearColor]];
+    
+    return lbl;
+}
+
 - (void)updateGraphDate:(WMChartDataObject *)data {
     
     if (data) {
         self.dataObject = data;
-        graphPoint.associatedObject = data;
         // day label
         NSDate *localDateForDayNumber = [_dataObject.time localDate];
         NSInteger day = [localDateForDayNumber dayNumber];
@@ -256,49 +157,18 @@
         // month label
         monthLabel.text = [[localDateForDayNumber weekStringDescription] uppercaseString];
         isToday = [NSDate daysBetweenDateOne:data.time dateTwo:[NSDate dateWithTimeIntervalSinceNow:0]] == 0;
-    }
-    
-    if (graphPoint) {
-        CGRect newFrame = graphPoint.frame;
-        newFrame.origin.x = (self.frame.size.width - newFrame.size.width)/2;
-        newFrame.origin.y = [controller pointYValueForDataObject:_dataObject] - GRAPH_POINT_SIZE.height/2;
-        graphPoint.frame = newFrame;
+        
+        CGRect newFrame = valueLabel.frame;
+        barY = [controller pointYValueForDataObject:_dataObject];
+        newFrame.origin.y = barY - newFrame.size.height;
+        valueLabel.frame = newFrame;
+        [valueLabel setText: [NSString stringWithFormat:@"%.1f%%", [data.value floatValue] ] ];
+        
+        [self setNeedsDisplay];
+        
     }
     
     //TODO: consider the average value
-    if (_dataObject) {
-        dataPos = [[NSMutableArray alloc]init];
-        Float32 frameWidth = controller.dayIntervalWidth;
-        CGFloat minX = frameWidth/2, maxX = frameWidth/2, minY = MAXIMUM_GRAPH_Y_VALUE, y = NAN;
-        
-        if (_dataObject.prev) {
-            minX = -frameWidth/2;
-            minY = [controller pointYValueForDataObject:_dataObject.prev];
-            [dataPos addObject: [NSValue valueWithCGPoint:CGPointMake(minX, minY)]];
-        }
-        
-        y = [controller pointYValueForDataObject:_dataObject];
-        minY = y > minY ? y : minY;
-        [dataPos addObject: [NSValue valueWithCGPoint:CGPointMake(maxX, y)]];
-        
-        if (_dataObject.next) {
-            maxX = frameWidth+frameWidth/2;
-            y = [controller pointYValueForDataObject:_dataObject.next];
-            minY = y > minY ? y : minY;
-            [dataPos addObject: [NSValue valueWithCGPoint:CGPointMake(maxX, y)]];
-        }
-        
-        if ([dataPos count] <= 1) {
-            // do not plot line if there is only one data
-            dataPos = nil;
-        } else {
-            minY = GRAPH_DATA_HEIGHT;//[controller pointYValueForDataValue:controller.minimumYValue];
-            [dataPos insertObject:[NSValue valueWithCGPoint:CGPointMake(minX, minY)] atIndex:0];
-            [dataPos addObject:[NSValue valueWithCGPoint:CGPointMake(maxX, minY)]];
-        }
-        
-        [self setNeedsDisplay];
-    }
 }
 
 - (void)drawRect:(CGRect)rect {
@@ -306,62 +176,16 @@
         return;
     }
     
+//    CGContextRef context = UIGraphicsGetCurrentContext();
     Float32 frameWidth = controller.dayIntervalWidth;
     
-    // drawing background for data
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGRect rectangle = CGRectMake(0.25, 0.5, frameWidth - 0.5, GRAPH_DATA_HEIGHT);
-    CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
-    CGContextFillRect(context, rectangle);
+    CGRect rectangle = CGRectMake(frameWidth*0.05, barY, frameWidth*0.9, GRAPH_DATA_HEIGHT + 13 - barY);
     
-    // top and bottom border
-    [[UIColor colorWithRed:240./255.f green:240./255.f blue:240./255.f alpha:1.0] set];
-    CGPoint points[2] = {CGPointMake(0.f, 0.f), CGPointMake(frameWidth, 0.f)};
-    CGContextStrokeLineSegments(context, points, 2);
+    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:rectangle
+                                               byRoundingCorners:UIRectCornerTopLeft|UIRectCornerTopRight cornerRadii:CGSizeMake(5.f, 5.f)];
     
-    if (isToday) {
-        [todayHighlightColor set];
-        rectangle = CGRectMake(0.0f, GRAPH_DATA_HEIGHT - 2.0, frameWidth, 2.f);
-        CGContextFillRect(context, rectangle);
-    } else {
-        points[0] = CGPointMake(0.f, GRAPH_DATA_HEIGHT); points[1] = CGPointMake(frameWidth, GRAPH_DATA_HEIGHT);
-        CGContextStrokeLineSegments(context, points, 2);
-    }
-    
-    // drawing line
-    if (dataPos) {
-        UIBezierPath *path = [[UIBezierPath alloc] init];
-        [path setLineWidth: BEZIER_PATH_WIDTH];
-        [path setLineCapStyle:kCGLineCapRound];
-        [path setLineJoinStyle:kCGLineJoinRound];
-        
-        // close path
-        CGContextSaveGState(context);
-        int i = 0;
-        [path moveToPoint: [[dataPos objectAtIndex:i] CGPointValue]];
-        for (; i < [dataPos count]; ++i) {
-            [path addLineToPoint:[[dataPos objectAtIndex:i] CGPointValue]];
-        }
-        [path closePath];
-        [path addClip];
-        [gradientColor set];
-        [path fill];
-        CGContextRestoreGState(context);
-        
-        [path removeAllPoints];
-        i = 1;
-        [path moveToPoint: [[dataPos objectAtIndex:i] CGPointValue]];
-        for (; i < [dataPos count] - 1; ++i) {
-            [path addLineToPoint:[[dataPos objectAtIndex:i] CGPointValue]];
-        }
-        
-        // set line color
-        [[UIColor whiteColor] set];
-        [path stroke];
-        [lineColor set];
-        [path stroke];
-
-    }
+    [gradientColor setFill];
+    [path fill];
 }
 
 @end
@@ -381,7 +205,8 @@
 
 - (id)initWithGraphDataObjectsArray:(NSArray *)objectsArray startDate:(NSDate *)theStartDate endDate:(NSDate *)theEndDate delegate:(id<WMChartViewDelegate>)theDelegate {
     
-    if(self = [super initWithFrame: DEF_VIEW_FRAME]){
+    CGRect defFrame = CGRectMake(0, 0.5*([UIScreen mainScreen].bounds.size.height - DEF_VIEW_FRAME_HEIGHT), 320.f, DEF_VIEW_FRAME_HEIGHT);
+    if(self = [super initWithFrame: defFrame]){
         
         self.backgroundColor = [UIColor wmViewBackgroundColor];
         
@@ -408,8 +233,8 @@
         graphTableView = nil;
         
         // mouth label
-        rightMouthLabel = [self makeMouthLabel];
-        leftMouthLabel  = [self makeMouthLabel];
+        rightMouthLabel = [self makeMonthLabel];
+        leftMouthLabel  = [self makeMonthLabel];
         
         UIPinchGestureRecognizer *pinchRecogniser = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(userDidUsePinchGesture:)];        
         [self addGestureRecognizer:pinchRecogniser];
@@ -424,7 +249,10 @@
     self.delegate = nil;
 }
 
-- (UILabel*) makeMouthLabel {
+#pragma mark makeMonthLabel
+
+- (UILabel*) makeMonthLabel {
+    
     UILabel *label  = [[UILabel alloc] init];
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_6_0
     label.textAlignment = UITextAlignmentCenter;
@@ -434,7 +262,7 @@
     CGSize labelSize = MONTH_LABEL_SIZE;
     label.frame = CGRectMake((self.frame.size.width-labelSize.width)/2, MONTH_LABEL_YOFFSET, labelSize.width, labelSize.height);
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"HelveticaNeue-UltraLight" size:20];
+    label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
     label.textColor = [UIColor wmGraphTextColor];
     [self addSubview:label];
     return label;
@@ -528,7 +356,7 @@
 	graphTableView.tableView.backgroundColor    = [UIColor clearColor];
 	graphTableView.tableView.allowsSelection    = NO;
     graphTableView.tableView.separatorStyle     = UITableViewCellSeparatorStyleNone;
-	graphTableView.cellBackgroundColor          = [UIColor whiteColor];
+	graphTableView.cellBackgroundColor          = [UIColor clearColor];
 	graphTableView.autoresizingMask             = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 	[self addSubview:graphTableView];
     
@@ -564,8 +392,7 @@
         }
     }
     
-    if (dataCnt >= minimumZoomRate * interval) {
-        
+    if (dataCnt > minimumZoomRate * interval) {
         [graphTableView.tableView layoutIfNeeded];
         CGPoint conetentOffset = graphTableView.contentOffset;
         conetentOffset.x = graphTableView.contentSize.width - GRAPH_FRAME_WIDTH;
@@ -793,7 +620,7 @@
 #pragma mark Size
 
 - (CGRect)frameForCurrentZoomRate{
-    _dayIntervalWidth = self.frame.size.width / (float)_zoomRate;
+    _dayIntervalWidth = self.frame.size.width / ((float)_zoomRate + .2f);
     float newGraphWidth = _dayIntervalWidth * numberOfDays;
     
     CGSize newSize = CGSizeMake(newGraphWidth, GRAPH_HEIGHT);

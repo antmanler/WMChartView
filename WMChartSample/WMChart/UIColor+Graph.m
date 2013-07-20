@@ -11,11 +11,13 @@
 @implementation UIColor (Graph)
 
 + (UIColor*) wmViewBackgroundColor {
-    return [UIColor colorWithRed:247./255.f green:247./255.f blue:247./255.f alpha:1.0];
+    return  [UIColor clearColor];
+//    return [UIColor colorWithRed:247./255.f green:247./255.f blue:247./255.f alpha:1.0];
 }
 
 + (UIColor *)wmGraphTextColor {
-    return [UIColor colorWithRed:80/255.0 green:80/255.0 blue:80/255.0 alpha:1.0];
+//    return [UIColor colorWithRed:80/255.0 green:80/255.0 blue:80/255.0 alpha:1.0];
+    return [UIColor whiteColor];
 }
 
 + (UIColor *)graphHorizontalLineColor{
