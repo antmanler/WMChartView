@@ -10,6 +10,7 @@
 
 @interface UIFont (Graph)
 
-+ (UIFont *)defaultGraphBoldFontWithSize:(float)size;
++ (UIFont *)wmDefaultFontWithSize:(CGFloat)size;
++ (UIFont *)wmDefaultItalicFontWithSize:(CGFloat)size;
 
 @end

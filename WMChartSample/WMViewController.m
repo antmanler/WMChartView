@@ -61,10 +61,6 @@
 
 #pragma mark WMChartViewDelegate
 
-- (void)graphScrollableView:(WMChartView *)view willUpdateFrame:(CGRect)newFrame{
-    
-}
-
 - (void)graphScrollableView:(WMChartView *)view didChangeZoomRate:(NSInteger)newZoomRate{
     
 }
@@ -74,14 +70,6 @@
 }
 
 - (void)graphScrollableViewDidEndUpdateZoomRate:(WMChartView *)view{
-    
-}
-
-- (void)graphScrollableViewDidEndRedraw:(WMChartView *)view{
-    
-}
-
-- (void)graphScrollableViewDidStartRedraw:(WMChartView *)view{
     
 }
 

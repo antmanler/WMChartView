@@ -46,9 +46,16 @@
     
     NSMutableArray      *dataPos;
     __weak WMChartView  *controller;
+    NSInteger           monthNumber;
+    NSString            *monthDescription;
 }
 
 @property (nonatomic, strong) WMChartDataObject *dataObject;
+
+// these properites below cache the value of current data object,
+// because these will be used many times when user scrolling the the view.
+@property (nonatomic, readonly) NSInteger       monthNumber;
+@property (nonatomic, readonly) NSString        *monthDescription;
 
 -(void) updateGraphDate:(WMChartDataObject*)data;
 
@@ -103,18 +110,18 @@
         
         // data label
         dayLabel = [self createLegendLabelWithFrame:CGRectMake(0, GRAPH_DATA_HEIGHT + 6, frame.size.width, 14)
-                                            andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:15.0f]];
+                                            andFont:[UIFont wmDefaultFontWithSize:15.0f]];
         [dayLabel setTextColor:[UIColor wmGraphTextColor]];
         [self addSubview:dayLabel];
         
         // month label
         monthLabel = [self createLegendLabelWithFrame:CGRectMake(0, dayLabel.frame.origin.y + dayLabel.frame.size.height, frame.size.width, 16)
-                                              andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLight" size:14.0f]];
+                                              andFont:[UIFont wmDefaultFontWithSize:14.0f]];
         [self addSubview:monthLabel];
         
         //value label
         valueLabel = [self createLegendLabelWithFrame:CGRectMake(0, 0, frame.size.width, 19)
-                                              andFont:[UIFont fontWithName:@"HelveticaNeue-UltraLightItalic" size:12.0f]];
+                                              andFont:[UIFont wmDefaultItalicFontWithSize:12.0f]];
         [valueLabel setCenter:CGPointMake((valueLabel.frame.size.width)/2.f,  (valueLabel.frame.size.height)/2.f)];
         [self addSubview:valueLabel];
         
@@ -164,6 +171,9 @@
         valueLabel.frame = newFrame;
         [valueLabel setText: [NSString stringWithFormat:@"%.1f%%", [data.value floatValue] ] ];
         
+        monthNumber = -1;
+        monthDescription = nil;
+        
         [self setNeedsDisplay];
         
     }
@@ -171,6 +181,22 @@
     //TODO: consider the average value
 }
 
+#pragma mark readonly proerites
+-(NSInteger) monthNumber {
+    if (monthNumber < 0) {
+        monthNumber = [_dataObject.time monthNumber];
+    }
+    return monthNumber;
+}
+
+-(NSString*) monthDescription {
+    if (!monthDescription) {
+        monthDescription = [_dataObject.time monthShortStringDescription];
+    }
+    return monthDescription;
+}
+
+#pragma mark draw bar chart
 - (void)drawRect:(CGRect)rect {
     if (!_dataObject) {
         return;
@@ -262,7 +288,7 @@
     CGSize labelSize = MONTH_LABEL_SIZE;
     label.frame = CGRectMake((self.frame.size.width-labelSize.width)/2, MONTH_LABEL_YOFFSET, labelSize.width, labelSize.height);
     label.backgroundColor = [UIColor clearColor];
-    label.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:24];
+    label.font = [UIFont wmDefaultFontWithSize:24];
     label.textColor = [UIColor wmGraphTextColor];
     [self addSubview:label];
     return label;
@@ -313,17 +339,6 @@
     }
 }
 
-
-#pragma mark Recent
-
-- (CGRect)recentObjectsVisibleRect{
-    
-    CGRect rect = GRAPH_VISIBLE_FRAME;
-    rect.origin.x = self.frame.size.width - GRAPH_VISIBLE_FRAME.size.width - 48.f / 2;
-    
-    return rect;
-}
-
 #pragma mark Zoom Rate
 
 - (void)setZoomRate:(NSInteger)theZoomRate{
@@ -336,10 +351,6 @@
 #pragma mark Reload
 
 - (void)reload{
-    
-    if([self.delegate respondsToSelector:@selector(graphScrollableViewDidStartRedraw:)]){
-        [self.delegate graphScrollableViewDidStartRedraw: self];
-    }
     
     if (graphTableView) {
         [graphTableView removeFromSuperview];
@@ -401,9 +412,6 @@
         
         graphTableView.tableView.scrollEnabled = NO;
     }
-    
-    [self.delegate graphScrollableView:self willUpdateFrame:newFrame];
-    [self.delegate graphScrollableViewDidEndRedraw: self];
 
 }
 
@@ -459,19 +467,19 @@
     NSInteger currMonthNumber = 0;
     
     GraphDataView *view = [dataViews objectAtIndex:0];
-    lastMonthNumber = currMonthNumber = [view.dataObject.time monthNumber];
-    leftMouthLabel.text = [view.dataObject.time monthShortStringDescription];
+    lastMonthNumber = currMonthNumber = view.monthNumber;
+    leftMouthLabel.text = view.monthDescription;
     int cnt = [dataViews count];
     int idx = 1;
     for (; idx < cnt; ++idx) {
         view = [dataViews objectAtIndex:idx];
-        currMonthNumber = [view.dataObject.time monthNumber];
+        currMonthNumber = view.monthNumber;
         if (currMonthNumber != lastMonthNumber) {
             break;
         }
         lastMonthNumber = currMonthNumber;
     }
-    rightMouthLabel.text = [view.dataObject.time monthShortStringDescription];
+    rightMouthLabel.text = view.monthDescription;
     
     if (idx != cnt) {
         // there contains diffrent months
@@ -593,28 +601,6 @@
     (data - _minimumYValue) * (GRAPH_HEIGHT - BOTTOM_Y_OFFSET_FOR_GRAPH_POINTS - TOP_Y_OFFSET_FOR_GRAPH_POINTS)/(_maximumYValue - _minimumYValue);
     
     return y;
-}
-
-#pragma mark Average
-
-- (NSNumber *)averageObjectValueForKey:(NSString *)key inArray:(NSArray *)array{
-    
-    __block float sum = 0.;
-    int count = [array count];
-    
-    if(count != 0){
-        
-        [array enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            
-            sum += [[obj valueForKey: key] floatValue];
-        }];
-        
-        float average = (float)sum / (float)count;
-        
-        return [NSNumber numberWithFloat: average];
-    }
-    
-    return @0;
 }
 
 #pragma mark Size

@@ -23,7 +23,6 @@
 		023D07EB17990A3800E462C2 /* WMChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E117990A3800E462C2 /* WMChartView.m */; };
 		023D07EC17990A3800E462C2 /* NSDate+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E317990A3800E462C2 /* NSDate+Graph.m */; };
 		023D07ED17990A3800E462C2 /* UIColor+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E517990A3800E462C2 /* UIColor+Graph.m */; };
-		023D07EE17990A3800E462C2 /* UIFont+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 023D07E717990A3800E462C2 /* UIFont+Graph.m */; };
 		023D07F817990EA500E462C2 /* graph_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F217990EA500E462C2 /* graph_background.png */; };
 		023D07F917990EA500E462C2 /* graph_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F317990EA500E462C2 /* graph_background@2x.png */; };
 		023D07FA17990EA500E462C2 /* graph_today_highlight.png in Resources */ = {isa = PBXBuildFile; fileRef = 023D07F417990EA500E462C2 /* graph_today_highlight.png */; };
@@ -32,6 +31,7 @@
 		0269337617992A420025D724 /* view_background-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0269337317992A420025D724 /* view_background-568h@2x.png */; };
 		0269337717992A420025D724 /* view_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 0269337417992A420025D724 /* view_background.png */; };
 		0269337817992A420025D724 /* view_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0269337517992A420025D724 /* view_background@2x.png */; };
+		027F5425179AC9ED007504B2 /* UIFont+Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 027F5424179AC9D4007504B2 /* UIFont+Graph.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +62,6 @@
 		023D07E317990A3800E462C2 /* NSDate+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Graph.m"; sourceTree = "<group>"; };
 		023D07E417990A3800E462C2 /* UIColor+Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Graph.h"; sourceTree = "<group>"; };
 		023D07E517990A3800E462C2 /* UIColor+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Graph.m"; sourceTree = "<group>"; };
-		023D07E617990A3800E462C2 /* UIFont+Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+Graph.h"; sourceTree = "<group>"; };
-		023D07E717990A3800E462C2 /* UIFont+Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Graph.m"; sourceTree = "<group>"; };
 		023D07F217990EA500E462C2 /* graph_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_background.png; sourceTree = "<group>"; };
 		023D07F317990EA500E462C2 /* graph_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "graph_background@2x.png"; sourceTree = "<group>"; };
 		023D07F417990EA500E462C2 /* graph_today_highlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = graph_today_highlight.png; sourceTree = "<group>"; };
@@ -72,6 +70,8 @@
 		0269337317992A420025D724 /* view_background-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view_background-568h@2x.png"; sourceTree = "<group>"; };
 		0269337417992A420025D724 /* view_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = view_background.png; sourceTree = "<group>"; };
 		0269337517992A420025D724 /* view_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "view_background@2x.png"; sourceTree = "<group>"; };
+		027F5423179AC9D4007504B2 /* UIFont+Graph.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+Graph.h"; sourceTree = "<group>"; };
+		027F5424179AC9D4007504B2 /* UIFont+Graph.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+Graph.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,8 +160,8 @@
 				023D07E317990A3800E462C2 /* NSDate+Graph.m */,
 				023D07E417990A3800E462C2 /* UIColor+Graph.h */,
 				023D07E517990A3800E462C2 /* UIColor+Graph.m */,
-				023D07E617990A3800E462C2 /* UIFont+Graph.h */,
-				023D07E717990A3800E462C2 /* UIFont+Graph.m */,
+				027F5423179AC9D4007504B2 /* UIFont+Graph.h */,
+				027F5424179AC9D4007504B2 /* UIFont+Graph.m */,
 			);
 			path = WMChart;
 			sourceTree = "<group>";
@@ -278,7 +278,7 @@
 				023D07EB17990A3800E462C2 /* WMChartView.m in Sources */,
 				023D07EC17990A3800E462C2 /* NSDate+Graph.m in Sources */,
 				023D07ED17990A3800E462C2 /* UIColor+Graph.m in Sources */,
-				023D07EE17990A3800E462C2 /* UIFont+Graph.m in Sources */,
+				027F5425179AC9ED007504B2 /* UIFont+Graph.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

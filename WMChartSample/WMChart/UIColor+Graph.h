@@ -13,21 +13,5 @@
 
 + (UIColor *)wmViewBackgroundColor;
 + (UIColor *)wmGraphTextColor;
-+ (UIColor *)graphLightPurpleColor;
-+ (UIColor *)graphDarkPurpleColor;
-+ (UIColor *)graphBrownColor;
-+ (UIColor *)graphGrayColor;
-+ (UIColor *)graphLightGreenColor;
-+ (UIColor *)graphRedColor;
-+ (UIColor *)graphHorizontalLineColor;
-+ (UIColor *)graphHorizontalLineColorAlpha;
-
-+ (UIColor *)graphPointMinusThreeValueColor;
-+ (UIColor *)graphPointMinusTwoValueColor;
-+ (UIColor *)graphPointMinusOneValueColor;
-+ (UIColor *)graphPointZeroValueColor;
-+ (UIColor *)graphPointOneValueColor;
-+ (UIColor *)graphPointTwoValueColor;
-+ (UIColor *)graphPointThreeValueColor;
 
 @end

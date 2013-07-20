@@ -7,11 +7,16 @@
 //
 #import "UIFont+Graph.h"
 
+#define WM_DEF_FONT_NAME @"HelveticaNeue-UltraLight"
+
 @implementation UIFont (Graph)
 
-+ (UIFont *)defaultGraphBoldFontWithSize:(float)size{
-    
-    return [UIFont fontWithName:@"HelveticaNeue-Bold" size:size];
++ (UIFont *)wmDefaultFontWithSize:(CGFloat)size {
+    return [UIFont fontWithName:WM_DEF_FONT_NAME size:size];
+}
+
++ (UIFont *)wmDefaultItalicFontWithSize:(CGFloat)size {
+    return [UIFont fontWithName:WM_DEF_FONT_NAME"Italic" size:size];
 }
 
 @end

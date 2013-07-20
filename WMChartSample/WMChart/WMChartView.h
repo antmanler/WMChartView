@@ -14,14 +14,9 @@
 @protocol WMChartViewDelegate <NSObject>
 
 @optional
-- (void)graphScrollableView:(WMChartView *)view willUpdateFrame:(CGRect)newFrame;
 - (void)graphScrollableView:(WMChartView *)view didChangeZoomRate:(NSInteger)newZoomRate;
 - (void)graphScrollableViewDidStartUpdateZoomRate:(WMChartView *)view;
 - (void)graphScrollableViewDidEndUpdateZoomRate:(WMChartView *)view;
-
-- (void)graphScrollableViewDidStartRedraw:(WMChartView *)view;
-- (void)graphScrollableViewDidEndRedraw:(WMChartView *)view;
-
 @end
 
 @interface WMChartView : UIView
@@ -36,9 +31,6 @@
 
 - (id)initWithGraphDataObjectsArray:(NSArray *)objectsArray startDate:(NSDate *)startDate endDate:(NSDate *)endDate delegate:(id<WMChartViewDelegate>)theDelegate;
 
-- (CGRect)recentObjectsVisibleRect;
-
 - (void)reload;
-
 
 @end
